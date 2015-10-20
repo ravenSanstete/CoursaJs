@@ -1,7 +1,6 @@
 var biz=require('./db_opration/user_biz');	
 module.exports=function(action,user){
 	if(action=="login"){
-		console.log('here');
 		return new Promise((resolve,reject)=>{
 
 			biz.login(user).then((users)=>{
