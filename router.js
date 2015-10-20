@@ -2,7 +2,7 @@ var qs=require('querystring');
 var url=require('url');
 
 var user_proc=require('./proc/user_proc');
-var util=require('./util/util');
+
 
 
 
@@ -10,14 +10,14 @@ var util=require('./util/util');
 module.exports=function(router){
 
 	router.post('/u',function(req,res,next){
-		user_proc(q(req).action,req.body).then((outcome_json)=>{
-			res.end(outcome_json);
+		user_proc(q(req).action,req.body,req).then((outcome_json)=>{
+			/*give login user a session*/
+			res.end(JSON.stringify(outcome_json));
 		});
-	
 	})
 
 	router.get('/u',function(req,res,next){
-		res.end("hello guest");
+		res.end(req.session.uid);
 	})
 
 
